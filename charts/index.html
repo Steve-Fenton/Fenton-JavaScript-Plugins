@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+/* Page Style */
+body {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 80%;
+}
+
+a, div, span {
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+        
+/* Charts */
+.chart-container {
+    border: 1px solid silver;
+}
+
+.chart-column div {
+    background-color: #666666;
+}
+
+.chart-column span {
+    display: none;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.chart-column:hover div {
+    background-color: #F60;
+}
+
+.chart-column:hover span {
+    display: block;
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 100%;
+    text-align: center;
+}
+
+.chart-legend span {
+    display: block;
+    width: 100%;
+    border-left: 1px solid silver;
+    border-right: 1px solid silver;
+}
+
+/* Gradients */
+.chart-container {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#DDDDDD', endColorstr='#FFFFFF');
+    background: -webkit-gradient(linear, left top, left bottom, from(#DDD), to(#FFF));
+    background: -moz-linear-gradient(top,  #DDD,  #FFF);
+    background-image: -o-linear-gradient(#DDD, #FFF);
+    background-image: linear-gradient(to bottom, #DDD, #FFF);
+}
+
+.chart-column div {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666', endColorstr='#BBBBBB');
+    background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#BBB));
+    background: -moz-linear-gradient(top,  #666,  #BBB);
+    background-image: -o-linear-gradient(#666, #BBB);
+    background-image: linear-gradient(to bottom, #666, #BBB);
+}
+
+.chart-column:hover div {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF6600', endColorstr='#FFAA00');
+    background: -webkit-gradient(linear, left top, left bottom, from(#F60), to(#FA0));
+    background: -moz-linear-gradient(top,  #F60,  #FA0);
+    background-image: -o-linear-gradient(#F60, #FA0);
+    background-image: linear-gradient(to bottom, #F60, #FA0);
+}
+
+/* Alternate Column Colours */
+#example2 .column-1 {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF0000', endColorstr='#FFBBBB');
+    background: -webkit-gradient(linear, left top, left bottom, from(#F00), to(#FBB));
+    background: -moz-linear-gradient(top,  #F00,  #FBB);
+    background-image: -o-linear-gradient(#F00, #FBB);
+    background-image: linear-gradient(to bottom, #F00, #FBB);
+}
+
+#example2 .column-2 {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00FF00', endColorstr='#BBFFBB');
+    background: -webkit-gradient(linear, left top, left bottom, from(#0F0), to(#BFB));
+    background: -moz-linear-gradient(top,  #0F0,  #BFB);
+    background-image: -o-linear-gradient(#0F0, #BFB);
+    background-image: linear-gradient(to bottom, #0F0, #BFB);
+}
+
+#example2 .column-3 {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0000F', endColorstr='#BBBBFF');
+    background: -webkit-gradient(linear, left top, left bottom, from(#00F), to(#BBF));
+    background: -moz-linear-gradient(top,  #00F,  #BBF);
+    background-image: -o-linear-gradient(#00F, #BBF);
+    background-image: linear-gradient(to bottom, #00F, #BBF);
+}
+
+#example2 .chart-column:hover div.column-1, #example2 .chart-column:hover div.column-2, #example2 .chart-column:hover div.column-3 {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF6600', endColorstr='#FFAA00');
+    background: -webkit-gradient(linear, left top, left bottom, from(#F60), to(#FA0));
+    background: -moz-linear-gradient(top,  #F60,  #FA0);
+    background-image: -o-linear-gradient(#F60, #FA0);
+    background-image: linear-gradient(to bottom, #F60, #FA0);
+}
+        </style>
+    </head>
+    <body>
+        <div id="example1">
+            <table class="column-chart" data-chart-width="400" data-chart-height="200">
+                <caption>Sales Figures</caption>
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Sales (&pound;)</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Jan</td>
+                        <td>265.5</td>
+                    </tr>
+                    <tr>
+                        <td>Feb</td>
+                        <td>155</td>
+                    </tr>
+                    <tr>
+                        <td>Mar</td>
+                        <td>320.6</td>
+                    </tr>
+                    <tr>
+                        <td>Apr</td>
+                        <td>120.6</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="example2">
+            <table class="column-chart" data-chart-width="400" data-chart-height="150">
+                <caption>Best / Average / Worst</caption>
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Best</th>
+                        <th>Avg</th>
+                        <th>Worst</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Jan</td>
+                        <td>320.6</td>
+                        <td>205</td>
+                        <td>112.23</td>
+                    </tr>
+                    <tr>
+                        <td>Feb</td>
+                        <td>155</td>
+                        <td>132</td>
+                        <td>120</td>
+                    </tr>
+                    <tr>
+                        <td>Mar</td>
+                        <td>265.5</td>
+                        <td>128</td>
+                        <td>65</td>
+                    </tr>
+                    <tr>
+                        <td>Apr</td>
+                        <td>120.6</td>
+                        <td>102</td>
+                        <td>85</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <script src="fenton.charts.js"></script>
+        <script>
+            Fenton.charts.draw();
+        </script>
+    </body>
+</html>

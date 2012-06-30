@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Footer</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="keywords" content="javascript, constant, footer">
+		<meta name="description" content="Demonstration on constant footer JavaScript plugin.">
+		<meta name="author" content="Steve Fenton">
+        <link rel="stylesheet" type="text/css" href="../optional.css">
+        <style>
+            #footer {
+                background-color: #000;
+                color: #FFF;
+            }
+            
+            #footer p {
+                padding: 0 1em;
+            }
+            
+            #footer a {
+                color: #FFF;
+            }
+        </style>
+	</head>
+	<body>
+        <div id="links">
+            <p>This is the live demo, <a href="http://www.stevefenton.co.uk/Content/JavaScript-Constant-Footer/">view the documentation</a>. 
+            Written by <a href="http://www.stevefenton.co.uk/">Steve Fenton</a>.</p>
+        </div>
+        <div id="header">
+            <h1>Constant Footer Example</h1>
+        </div>
+        <div id="maincontent">
+            <div id="what">
+                <h2>Constant Footer Summary</h2>
+                <p>Converts an element into a constant footer with adjusted opacity.</p>
+            </div>
+            <div id="how">
+                <p>To use the plugin with the default configuration use:</p>
+                <pre>Fenton.footer.addElement('myElementId').run();</pre>
+                <p>By default the opacity is 0.8 (80%). You can adjust this using:</p>
+                <pre>Fenton.footer.addElement('myElementId').setOpacity(0.5).run();</pre>
+                <p>Because sizing can be affected right up until the page has finished loading, I recommend wrapping the code in the onload event:</p>
+                <pre>window.onload = function () {
+    Fenton.footer.addElement('footer').setOpacity(0.5).run();
+};</pre>
+            </div>
+        </div>
+        <div id="footer">
+            <p><a href="http://www.stevefenton.co.uk/Content/Blog/">Read Steve Fenton's Blog</a> or 
+            <a href="http://www.stevefenton.co.uk/RSS/Blog/">Subscribe to the RSS feed</a></p>
+        </div> 
+        <script src="footer.js"></script>
+        <script>
+            window.onload = function () {
+                Fenton.footer.addElement('footer').setOpacity(0.8).showCloseButton().run();
+            };
+        </script>
+
+        <!-- Just for web stats... not needed for the plugin -->
+        <script type="text/javascript">
+            var myMasterUri = "http://www.stevefenton.co.uk/";
+            var myStatUrl = "http://www.stevefenton.co.uk/reports/";
+        </script>	
+        <script type="text/javascript" src="/reports/swiftstats.js"></script>
+    </body>
+</html>
