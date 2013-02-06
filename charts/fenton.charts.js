@@ -110,7 +110,7 @@ Fenton.charts = (function () {
     };
 
     return {
-        draw: function () {
+        run: function () {
             var i;
             var tables = getChartSources('column-chart');
             for (i = 0; i < tables.length; i++) {

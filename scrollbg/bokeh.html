@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            background-image: url('bg.png');
+            background-attachment: fixed;
+            background-repeat: repeat-x;
+            background-color: #000;
+        }
+        
+        h1 {
+            color: #FFF;
+            width: 80%;
+            margin: 30px auto;
+        }
+        
+        #content {
+            width: 80%;
+            padding: 1em;
+            margin: 30px auto;
+            background-color: #FFF;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="test">Test </h1>
+    <div id="content">
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+        <p>Lots of content</p>
+    </div>
+<script>
+(function () {
+    var image = 'bokeh.png';
+    var distanceFactor = 1; // 0.1 - 4 works well.
+    var time = 5; // seconds
+    var parallax = true;
+    
+    var styles, lowerElement;
+    var bokehElement = document.createElement('div');
+    
+    var applyStyles = function (element, styles) {
+        for (var i = 0; i < styles.length; i++) {
+            element.style[styles[i][0]] = styles[i][1];
+        }
+    };
+    
+    styles = [
+        ['position', 'fixed'],
+        ['top', '0'],
+        ['left', '0'],
+        ['width', '100%'],
+        ['height', '334px'],
+        ['backgroundImage', 'url("' + image + '")'],
+        ['backgroundRepeat', 'repeat-x'],
+        ['zIndex', '-1'],
+        ['msTransition', 'background ' + time + 's ease 0s'],
+        ['webkitTransition', 'background ' + time + 's ease 0s'],
+        ['MozTransition', 'background ' + time + 's ease 0s'],
+        ['OTransition', 'background ' + time + 's ease 0s'],
+        ['transition', 'background ' + time + 's ease 0s']
+    ];
+    
+    applyStyles(bokehElement, styles);
+    
+    if (parallax) {
+        lowerElement = bokehElement.cloneNode(false);
+        styles = [
+            ['top', '20px'],
+            ['msTransform', 'scaleX(-1)'],
+            ['webkitTransform', 'scaleX(-1)'],
+            ['MozTransform', 'scaleX(-1)'],
+            ['OTransform', 'scaleX(-1)'],
+            ['transform', 'scaleX(-1)']
+        ];
+        
+        applyStyles(lowerElement, styles);
+        document.body.appendChild(lowerElement);
+    }
+    
+    document.body.appendChild(bokehElement);
+
+    window.onscroll = function () {
+        var position = window.pageYOffset * distanceFactor;
+        bokehElement.style.backgroundPosition = position + 'px 0';
+        if (parallax) {
+            position = (position / 2) * -1;
+            lowerElement.style.backgroundPosition = position + 'px 0';
+        }
+    }
+    
+    styles = null;
+}());
+</script>
+</body>
+</html>

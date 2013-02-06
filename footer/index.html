@@ -2,10 +2,10 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Footer</title>
+		<title>JavaScript Constant Footer</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="keywords" content="javascript, constant, footer">
-		<meta name="description" content="Demonstration on constant footer JavaScript plugin.">
+		<meta name="description" content="Demonstration of JavaScript Constant Footer plugin.">
 		<meta name="author" content="Steve Fenton">
         <link rel="stylesheet" type="text/css" href="../optional.css">
         <style>
@@ -25,16 +25,18 @@
 	</head>
 	<body>
         <div id="links">
-            <p>This is the live demo, <a href="http://www.stevefenton.co.uk/Content/JavaScript-Constant-Footer/">view the documentation</a>. 
+            <p>This is the live demo, <a href="http://www.stevefenton.co.uk/Content/JavaScript/">view more JavaScript plugins</a>.
             Written by <a href="http://www.stevefenton.co.uk/">Steve Fenton</a>.</p>
         </div>
         <div id="header">
-            <h1>Constant Footer Example</h1>
+            <h1>JavaScript Constant Footer</h1>
         </div>
         <div id="maincontent">
             <div id="what">
-                <h2>Constant Footer Summary</h2>
+                <h2>JavaScript Constant Footer Demo</h2>
                 <p>Converts an element into a constant footer with adjusted opacity.</p>
+                <p>In this example, the footer runs along the bottom of the window and stays put even when you scroll or resize the browser.</p>
+                <p>If you have a really big screen, you may want to resize the page to see how it behaves when you scroll.</p>
             </div>
             <div id="how">
                 <p>To use the plugin with the default configuration use:</p>
@@ -51,18 +53,23 @@
             <p><a href="http://www.stevefenton.co.uk/Content/Blog/">Read Steve Fenton's Blog</a> or 
             <a href="http://www.stevefenton.co.uk/RSS/Blog/">Subscribe to the RSS feed</a></p>
         </div> 
-        <script src="footer.js"></script>
+        <script src="fenton.footer.js"></script>
         <script>
             window.onload = function () {
                 Fenton.footer.addElement('footer').setOpacity(0.8).showCloseButton().run();
             };
         </script>
 
-        <!-- Just for web stats... not needed for the plugin -->
-        <script type="text/javascript">
-            var myMasterUri = "http://www.stevefenton.co.uk/";
-            var myStatUrl = "http://www.stevefenton.co.uk/reports/";
-        </script>	
-        <script type="text/javascript" src="/reports/swiftstats.js"></script>
+<!-- Just for web stats... not needed for the plugin -->
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36818004-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
     </body>
 </html>
