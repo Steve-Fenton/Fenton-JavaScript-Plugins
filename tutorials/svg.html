@@ -2,9 +2,14 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <title>SVG Example</title>
     <style>
         svg {
             border: 1px solid Silver;
+        }
+        
+        rect {
+            transition: all 0.5s ease;
         }
         
         rect:hover {
@@ -21,80 +26,80 @@
 <body>
     <h1 id="test">Test</h1>
     <svg id="chart" width="500px" height="250px" xmlns="http://www.w3.org/2000/svg"></svg>
-<script>
-(function () {
-    var svgns = "http://www.w3.org/2000/svg";
-    var target = document.getElementById('chart');
+    <script>
+    (function () {
+        var svgns = "http://www.w3.org/2000/svg";
+        var target = document.getElementById('chart');
 
-    var width = 500;
-    var height = 250;
-
-    var data = [
-        { name: 'Series 1', value: 50 },
-        { name: 'Series 2', value: 80 },
-        { name: 'Series 3', value: 30 },
-        { name: 'Series 4', value: 90 },
-        { name: 'Series 5', value: 20 },
-        { name: 'Series 6', value: 30 }
-    ];
-    
-    var drawBar = function (x, y, w, h, c) {
-        var rect = document.createElementNS(svgns, 'rect');
-        rect.setAttributeNS(null, 'x', x);
-        rect.setAttributeNS(null, 'y', y);
-        rect.setAttributeNS(null, 'height', h);
-        rect.setAttributeNS(null, 'width', w);
-        rect.setAttributeNS(null, 'fill', c);//'#'+Math.round(0xffffff * Math.random()).toString(16)
-        target.appendChild(rect);
-    };
-    
-    var drawText = function (t, x, y) {
-        var text = document.createElementNS(svgns, 'text');
-        text.textContent = t;
-        text.setAttributeNS(null, 'fill', '#ffffff');
-        target.appendChild(text);
-        text.setAttributeNS(null, 'x', x - Math.floor(text.getBBox().width / 2));
-        text.setAttributeNS(null, 'y', y);
-    };
-    
-    var getSummary = function (data) {
-        var total = 0;
-        var max = 0;
-        for (var i = 0; i < data.length; i++) {
-            total += data[i].value;
-            if (data[i].value > max) {
-                max = data[i].value;
+        var data = [
+            { name: 'Series 1', value: 50 },
+            { name: 'Series 2', value: 80 },
+            { name: 'Series 3', value: 30 },
+            { name: 'Series 4', value: 90 },
+            { name: 'Series 5', value: 20 },
+            { name: 'Series 6', value: 30 }
+        ];
+        
+        var drawBar = function (x, y, w, h, c) {
+            var rect = document.createElementNS(svgns, 'rect');
+            rect.setAttributeNS(null, 'x', x);
+            rect.setAttributeNS(null, 'y', y);
+            rect.setAttributeNS(null, 'height', h);
+            rect.setAttributeNS(null, 'width', w);
+            rect.setAttributeNS(null, 'fill', c);//'#'+Math.round(0xffffff * Math.random()).toString(16)
+            target.appendChild(rect);
+        };
+        
+        var drawText = function (t, x, y) {
+            var text = document.createElementNS(svgns, 'text');
+            text.textContent = t;
+            text.setAttributeNS(null, 'fill', '#ffffff');
+            target.appendChild(text);
+            text.setAttributeNS(null, 'x', x - Math.floor(text.getBBox().width / 2));
+            text.setAttributeNS(null, 'y', y);
+        };
+        
+        var getSummary = function (data) {
+            var total = 0;
+            var max = 0;
+            for (var i = 0; i < data.length; i++) {
+                total += data[i].value;
+                if (data[i].value > max) {
+                    max = data[i].value;
+                }
             }
-        }
-        return { total: total, max: max };
-    };
-    
-    var drawBars = function (data, width, height) {
-        var summary = getSummary(data);
-        var barWidth = Math.floor(width / data.length);
-        var unitHeight = height / summary.max;
+            return { total: total, max: max };
+        };
         
-        var colourUnit = Math.floor(250 / data.length);
-    
-        for (var i = 0; i < data.length; i++) {
-            var item = data[i];
+        var drawChart = function (data, width, height) {
+            var summary = getSummary(data);
+            var barWidth = Math.floor(width / data.length);
+            var unitHeight = height / summary.max;
+            var colourUnit = Math.floor(250 / data.length);
         
-            var w = barWidth - 1;
-            var h = Math.floor(item.value * unitHeight);
-            var x = Math.ceil(barWidth * i) + 1;
-            var y = height - h;
-            var r = (colourUnit * i);
-            var g = 100;
-            var b = 250 - r;
-            var c = 'rgb(' + r + ',' + g + ',' + b + ')';
+            for (var i = 0; i < data.length; i++) {
+                var item = data[i];
+            
+                var w = barWidth - 1;
+                var h = Math.floor(item.value * unitHeight);
+                var x = Math.ceil(barWidth * i) + 1;
+                var y = height - h;
+                
+                var r = (colourUnit * i);
+                var g = 100;
+                var b = 250 - r;
+                var c = 'rgb(' + r + ',' + g + ',' + b + ')';
+            
+                drawBar(x, y, w, h, c);
+                drawText(item.name, x + Math.floor(barWidth / 2), height - 5);
+            }
+        };
         
-            drawBar(x, y, w, h, c);
-            drawText(item.name, x + Math.floor(barWidth / 2), height - 5);
-        }
-    };
-    
-    drawBars(data, width, height);
-}());
-</script>
+        var chartWidth = 500;
+        var chartHeight = 250;
+        
+        drawChart(data, chartWidth, chartHeight);
+    }());
+    </script>
 </body>
 </html>
