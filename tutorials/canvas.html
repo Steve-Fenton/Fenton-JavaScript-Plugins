@@ -2,84 +2,83 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <style>
-        canvas {
-            border: 1px solid Silver;
-        }
-    </style>
+    <title>Canvas Chart Example</title>
 </head>
 <body>
     <h1 id="test">Test</h1>
     <canvas id="chart" width="500" height="250"></canvas>
-<script>
-(function () {
-    var target = document.getElementById('chart');
-    var surface = target.getContext('2d');
-    var width = target.width;
-    var height = target.height;
-
-    var data = [
-        { name: 'Series 1', value: 50 },
-        { name: 'Series 2', value: 80 },
-        { name: 'Series 3', value: 30 },
-        { name: 'Series 4', value: 90 },
-        { name: 'Series 5', value: 20 },
-        { name: 'Series 6', value: 30 }
-    ];
-    
-    var setColour = function (r, g, b) {
-        surface.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
-    };
-    
-    var drawBar = function (x, y, w, h) {
-        surface.fillRect(x, y, w, h);
-    };
-    
-    var drawText = function (t, x, y) {
-        surface.textAlign = 'center';
-        surface.textBaseline = 'bottom';
-        surface.fillText(t, x, y);
-    };
-    
-    var getSummary = function (data) {
-        var total = 0;
-        var max = 0;
-        for (var i = 0; i < data.length; i++) {
-            total += data[i].value;
-            if (data[i].value > max) {
-                max = data[i].value;
+    <script>
+    (function () {
+        var target = document.getElementById('chart');
+        var canvas = target.getContext('2d');
+        
+        var getSummary = function (data) {
+            // Gets the total and the largest value
+            var total = 0;
+            var max = 0;
+            for (var i = 0; i < data.length; i++) {
+                total += data[i].value;
+                if (data[i].value > max) {
+                    max = data[i].value;
+                }
             }
-        }
-        return { total: total, max: max };
-    };
-    
-    var drawBars = function (data, width, height) {
-        var summary = getSummary(data);
-        var barWidth = Math.floor(width / data.length);
-        var unitHeight = height / summary.max;
+            return { total: total, max: max };
+        };
         
-        var colourUnit = Math.floor(250 / data.length);
-    
-        for (var i = 0; i < data.length; i++) {
-            var item = data[i];
+        var drawChart = function (data, width, height) {
+            var summary = getSummary(data);
+            var barWidth = Math.floor(width / data.length);
+            var unitHeight = height / summary.max;
+            var colourUnit = Math.floor(250 / data.length);
+            
+            var drawBar = function (item) {
+                // Calculate size and position of bar
+                var w = barWidth - 1;
+                var h = Math.floor(item.value * unitHeight);
+                var x = Math.ceil(barWidth * i) + 1;
+                var y = height - h;
+                
+                // Calculate position of label
+                var lx = (x + Math.floor(w / 2));
+                var ly = height - 5;
+                
+                // Generate a colour for the bar
+                var r = (colourUnit * i);
+                var g = 100;
+                var b = 250 - r;
+            
+                // Draw the bar
+                canvas.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
+                canvas.fillRect(x, y, w, h);
+                
+                // Draw the label
+                canvas.fillStyle = 'rgb(255,255,255)';
+                canvas.textAlign = 'center';
+                canvas.textBaseline = 'bottom';
+                canvas.fillText(item.name, lx, ly);
+            };
         
-            var w = barWidth - 1;
-            var h = Math.floor(item.value * unitHeight);
-            var x = Math.ceil(barWidth * i) + 1;
-            var y = height - h;
-            var r = (colourUnit * i);
-            var g = 100;
-            var b = 250 - r;
+            for (var i = 0; i < data.length; i++) {
+                var item = data[i];
+                drawBar(item);
+            }
+        };
         
-            setColour(r, g, b);
-            drawBar(x, y, w, h);
-            setColour(250, 250, 250);
-            drawText(item.name, (x + Math.floor(w / 2)), height - 5);
-        }
-    };
-    
-    drawBars(data, width, height);
-}());
-</script>
+        var data = [
+            { name: 'Series 1', value: 50 },
+            { name: 'Series 2', value: 80 },
+            { name: 'Series 3', value: 30 },
+            { name: 'Series 4', value: 90 },
+            { name: 'Series 5', value: 20 },
+            { name: 'Series 6', value: 30 }
+        ];
+        
+        var chartWidth = target.width;
+        var chartHeight = target.height;
+        target.style.border = '1px solid #CCC';
+        
+        drawChart(data, chartWidth, chartHeight);
+    }());
+    </script>
 </body>
 </html>
